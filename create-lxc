@@ -1,0 +1,37 @@
+#!/bin/bash
+CREATE=0
+NAME=
+while [ $# -ge 1 ]; do
+	case $1 in
+		--create|-c)	CREATE=1;;
+		*)		[ "$NAME" != "" ] && echo "you have already provided name $NAME for the container" >&2 && exit 1
+				NAME=$1;; 
+	esac
+	shift
+done
+
+[ "$NAME" == "" ] && echo "please provide a name for the container" >&2 && exit 1
+
+if [ $CREATE -eq 1 ]; then
+	lxc-create -n "$NAME" -t ubuntu
+	cat >> /var/lib/lxc/$NAME/config << EOT
+lxc.cgroup.devices.allow = a
+lxc.mount.auto = cgroup
+lxc.aa_profile = unconfined
+EOT
+fi
+
+cat >> ./$NAME.install.config << EOT
+lxc.include = /var/lib/lxc/$NAME/config
+lxc.mount.entry=$PWD opt/setup none bind,create=dir 0 0
+EOT
+
+COMMANDS="install-base install-heat-translator install-tosca-parser"
+lxc-start -d -n $NAME -f $NAME.install.config
+sleep 5s
+for CMD in $COMMANDS; do
+	lxc-attach -n $NAME -- /opt/setup/install/$CMD
+	sleep 2s
+done
+rm -f ./$NAME.install.config
+exit 0

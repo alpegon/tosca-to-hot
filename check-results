@@ -1,0 +1,2 @@
+#!/bin/bash
+lxc-attach -n $1 -- cat /tmp/diff-output.log

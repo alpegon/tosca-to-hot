@@ -1,0 +1,10 @@
+#!/bin/bash
+NAME=$1
+[ "$NAME" == "" ] && echo "please provide a name for the container" >&2 && exit 1
+
+COMMANDS="test-base-tosca"
+for CMD in $COMMANDS; do
+	sleep 2s
+	lxc-attach -n $NAME -- /opt/setup/test/$CMD
+done
+exit 0
