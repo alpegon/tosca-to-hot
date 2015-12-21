@@ -7,9 +7,9 @@ cd heat-translator
 sudo python setup.py install
 
 # Show git project info
-cat >> /tmp/tosca-to-hot.log << EOT
+cat >> /tmp/container.info << EOT
 ############################
 # HEAT-TRANSLATOR GIT INFO #
 ############################
 EOT
-git log | head -n 3 >> /tmp/tosca-to-hot.log
+git log | head -n 3 >> /tmp/container.info

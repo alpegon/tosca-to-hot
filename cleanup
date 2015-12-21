@@ -1,0 +1,11 @@
+#!/bin/bash
+NAME=$1
+[ "$NAME" == "" ] && echo "please provide a name for the container" >&2 && exit 1
+if sudo lxc-ls -f | grep $NAME
+then
+    if sudo lxc-ls -f | grep $NAME | grep RUNNING
+    then
+    	sudo lxc-stop -n $NAME
+    fi
+    sudo lxc-destroy -n $NAME
+fi

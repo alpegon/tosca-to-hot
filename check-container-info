@@ -1,0 +1,5 @@
+#!/bin/bash
+NAME=$1
+[ "$NAME" == "" ] && echo "please provide a name for the container" >&2 && exit 1
+
+lxc-attach -n $NAME -- cat /tmp/container.info
