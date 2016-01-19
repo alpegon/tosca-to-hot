@@ -2,7 +2,7 @@
 
 Tosca to Hot - Tests
 ===============
-Tests to check the heat-translator compatibility with the non normative tosca types.
+Tests to check the heat-translator compatibility with the [INDIGO TOSCA types] (https://github.com/indigo-dc/tosca-types).
 
 1. INSTALLATION
 ===============
@@ -25,7 +25,10 @@ Currently there is only one basic test to check the tosca to hot functionality, 
 ```
 sudo ./launch-tests toscahot 
 ```
-If everything is correct you should see the message:
+The tests use the '[BATS] (https://github.com/sstephenson/bats)' library.
+After passing the tests you should see a [TAP] (http://testanything.org/) compliant output like:
 ```
-Test test-base-tosca passed.
+1..2
+ok 1 Translate base tosca
+ok 2 Check tosca files
 ```
