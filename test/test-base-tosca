@@ -4,7 +4,7 @@
 # Needed due to a problem with the configuration files of the heat-translator
 cd /heat-translator/
 
-@test "Translate tosca" {
+@test "Translate base tosca" {
   heat-translator --template-file=/opt/setup/test/base-tosca/tosca-base-test.yaml --template-type=tosca --output-file=/tmp/hot-base-test.yaml >> /tmp/tosca-to-hot-tests.log
 }
 
