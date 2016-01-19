@@ -5,5 +5,5 @@
 }
 
 @test "Check tosca files" {
-  diff /opt/setup/test/base-tosca/hot-base-test.yaml /tmp/hot-base-test.yaml >> /tmp/diff-output.log
+  diff /opt/setup/test/base-tosca/hot-base-test.yaml /tmp/hot-base-test.yaml
 }
