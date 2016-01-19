@@ -2,7 +2,7 @@
 
 # We have to be in the main folder of the heat-translator project
 # Needed due to a problem with the configuration files of the heat-translator
-cd heat-translator/
+cd /heat-translator/
 
 @test "Translate tosca" {
   heat-translator --template-file=/opt/setup/test/base-tosca/tosca-base-test.yaml --template-type=tosca --output-file=/tmp/hot-base-test.yaml >> /tmp/tosca-to-hot-tests.log
