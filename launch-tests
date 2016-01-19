@@ -5,9 +5,6 @@ NAME=$1
 COMMANDS="test-base-tosca"
 for CMD in $COMMANDS; do
 	sleep 2s
-	lxc-attach -n $NAME -- /opt/setup/test/$CMD
-	sleep 1s
-	DIFF_OUTPUT=/tmp/diff-output.log
-	lxc-attach -n $NAME -- bash -c "if [[ -s $DIFF_OUTPUT ]] ; then echo 'Test $CMD failed.'; else echo 'Test $CMD passed.'; fi ;"
+	lxc-attach -n $NAME -- bats /opt/setup/test/$CMD
 done
 exit 0
