@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bats
 
-# Generate hot output
-heat-translator --template-file=/opt/setup/test/base-tosca/tosca-base-test.yaml --template-type=tosca --output-file=/tmp/hot-base-test.yaml >> /tmp/tosca-to-hot-tests.log
+@test "Translate tosca" {
+  heat-translator --template-file=/opt/setup/test/base-tosca/tosca-base-test.yaml --template-type=tosca --output-file=/tmp/hot-base-test.yaml >> /tmp/tosca-to-hot-tests.log
+}
 
-# Compare expected output with generated output
-diff /opt/setup/test/base-tosca/hot-base-test.yaml /tmp/hot-base-test.yaml >> /tmp/diff-output.log
+@test "Check tosca files" {
+  diff /opt/setup/test/base-tosca/hot-base-test.yaml /tmp/hot-base-test.yaml >> /tmp/diff-output.log
+}
